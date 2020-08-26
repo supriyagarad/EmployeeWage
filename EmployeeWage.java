@@ -10,40 +10,51 @@ public class EmployeeWage{
 		//VARIABLES
 		int employeeHour=0;
 		int empWage=0;
+		int totalSalary=0;
+		int salary=0;
+		int workingDays=20;
 
-	 	//COMPUTATION
-		int empCheck = (int)( Math.random() * 10 ) % 3;
+		for(int day=1;day<=workingDays;day++)
+		{
+	 		//COMPUTATION
+			int empCheck = (int)( Math.random() * 10 ) % 3;
 
-		switch(empCheck){
-			case PART_TIME:
-					employeeHour=4;
-					break;
+			switch(empCheck){
+				case PART_TIME:
+						employeeHour=4;
+						break;
 
-			case FULL_TIME:
-					employeeHour=8;
-					break;
+				case FULL_TIME:
+						employeeHour=8;
+						break;
 
-			case ABSENT:
-               employeeHour = 0;
-               break;
+				case ABSENT:
+            	   employeeHour = 0;
+               	break;
 
-			default:
-					System.out.println("invalid choice");
+				default:
+						System.out.println("invalid choice");
+			}
+
+			empWage=employeeHour * EMP_RATE_PER_HOUR;
+			System.out.println("Employee Wage:" + empWage);
 		}
+		//calculated daily salary
+		salary=(EMP_RATE_PER_HOUR * employeeHour);
 
-		empWage=employeeHour * EMP_RATE_PER_HOUR;
-		System.out.println("Employee Wage:" + empWage);
+		//calculated monthly Salary
+		totalSalary=(totalSalary+salary);
 	}
 
-	 //main method
-    public static void main(String args[]){
+	//main method
+   public static void main(String args[]){
 
-    //create object of class
-    EmployeeWage employee = new EmployeeWage();
+   //create object of class
+   EmployeeWage employee = new EmployeeWage();
 
-    //method call
-    employee.calculatedEmployeeWage();
-    }
+   //method call
+   employee.calculatedEmployeeWage();
+  }
 }
 
 
