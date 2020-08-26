@@ -1,49 +1,55 @@
+/**********************************************************************************************************************
+*@purpose:-> Calculate Employees total salary with working hour. 
+**********************************************************************************************************************/
 public class EmployeeWage{
 	//CONSTANTS
-	public static final int PART_TIME=1;
-	public static final int FULL_TIME=2;
-	public static final int ABSENT=0;
-	public static final int EMP_RATE_PER_HOUR=20;
+	final int ABSENT=0;
+   final int PART_TIME=1;
+	final int FULL_TIME=2;
+	final int EMP_RATE_PER_HOUR=20;
+	final int MAX_WORKING_HOUR=100;
+	final int MAX_DAYS=20;
 
 	public void calculatedEmployeeWage()
 	{
 		//VARIABLES
+		int totalEmployeeHour=0;
 		int employeeHour=0;
-		int empWage=0;
 		int totalSalary=0;
-		int salary=0;
-		int workingDays=20;
+		int totalWorkingDays=0;
 
-		for(int day=1;day<=workingDays;day++)
+		while(totalWorkingDays<MAX_DAYS && totalEmployeeHour<MAX_WORKING_HOUR)
 		{
+			totalWorkingDays++;
+
 	 		//COMPUTATION
 			int empCheck = (int)( Math.random() * 10 ) % 3;
 
 			switch(empCheck){
 				case PART_TIME:
-						employeeHour=4;
-						break;
+					employeeHour=4;
+					break;
 
 				case FULL_TIME:
-						employeeHour=8;
-						break;
+					employeeHour=8;
+					break;
 
 				case ABSENT:
-            	   employeeHour = 0;
-               	break;
+            	employeeHour = 0;
+                break;
 
-				default:
-						System.out.println("invalid choice");
+				 default:
+					System.out.println("invalid choice");
 			}
 
-			empWage=employeeHour * EMP_RATE_PER_HOUR;
-			System.out.println("Employee Wage:" + empWage);
-		}
-		//calculated daily salary
-		salary=(EMP_RATE_PER_HOUR * employeeHour);
+		//calculated total employee hour
+		totalEmployeeHour=(totalEmployeeHour + employeeHour);
 
-		//calculated monthly Salary
-		totalSalary=(totalSalary+salary);
+		//calculated total Salary
+		totalSalary=(EMP_RATE_PER_HOUR * totalEmployeeHour);
+		}
+
+		System.out.println("total salary of employee:" +totalSalary);
 	}
 
 	//main method
