@@ -6,9 +6,18 @@ public class EmployeeWage{
 	final int ABSENT=0;
    final int PART_TIME=1;
 	final int FULL_TIME=2;
-	final int EMP_RATE_PER_HOUR=20;
-	final int MAX_WORKING_HOUR=100;
-	final int MAX_DAYS=20;
+	final int EMP_RATE_PER_HOUR;
+	final int MAX_WORKING_HOUR;
+	final int MAX_DAYS;
+
+	//CONSTRUCTOR
+
+	public EmployeeWage(int EMP_RATE_PER_HOUR,int MAX_WORKING_HOUR,int MAX_DAYS){
+		this.EMP_RATE_PER_HOUR= EMP_RATE_PER_HOUR;
+		this.MAX_WORKING_HOUR= MAX_WORKING_HOUR;
+		this.MAX_DAYS=MAX_DAYS;
+	}
+
 
 	public void calculatedEmployeeWage()
 	{
@@ -56,7 +65,7 @@ public class EmployeeWage{
    public static void main(String args[]){
 
    //create object of class
-   EmployeeWage employee = new EmployeeWage();
+   EmployeeWage employee = new EmployeeWage(20,100,20);
 
    //method call
    employee.calculatedEmployeeWage();
