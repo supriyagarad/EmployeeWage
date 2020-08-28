@@ -1,25 +1,34 @@
-/**********************************************************************************************************************
-*@purpose:-> Calculate Employees total salary with working hour. 
+/********************************************************************************************************************** 
+*@Author:-> priyanka
+*@purpose:-> Calculated Employee Wage for Multiple company 
+*@Date:-> 28/8/2020
 **********************************************************************************************************************/
-public class EmployeeWage{
+ public class EmployeeWage{
 	//CONSTANTS
 	final int ABSENT=0;
-   final int PART_TIME=1;
+	final int PART_TIME=1;
 	final int FULL_TIME=2;
-	final int EMP_RATE_PER_HOUR;
-	final int MAX_WORKING_HOUR;
-	final int MAX_DAYS;
+
+	//VARIABLES
+	final String companyName;
+	final int empRatePerHour;
+	final int maxWorkingHour;
+	final int maxDays;
 
 	//CONSTRUCTOR
 
-	public EmployeeWage(int EMP_RATE_PER_HOUR,int MAX_WORKING_HOUR,int MAX_DAYS){
-		this.EMP_RATE_PER_HOUR= EMP_RATE_PER_HOUR;
-		this.MAX_WORKING_HOUR= MAX_WORKING_HOUR;
-		this.MAX_DAYS=MAX_DAYS;
+	public EmployeeWage(String companyName,int empRatePerHour,int maxWorkingHour,int maxDays){
+		this.companyName=companyName;
+		this.empRatePerHour=empRatePerHour;
+		this.maxWorkingHour=maxWorkingHour;
+		this.maxDays=maxDays;
 	}
 
-
-	public void calculatedEmployeeWage()
+	/**
+	*calculate employee daily wages based on type of employee
+	*@return-> total employee wage 
+	*/
+	public int calculatedEmployeeWage()
 	{
 		//VARIABLES
 		int totalEmployeeHour=0;
@@ -27,7 +36,7 @@ public class EmployeeWage{
 		int totalSalary=0;
 		int totalWorkingDays=0;
 
-		while(totalWorkingDays<MAX_DAYS && totalEmployeeHour<MAX_WORKING_HOUR)
+		while(totalWorkingDays<maxDays && totalEmployeeHour<maxWorkingHour)
 		{
 			totalWorkingDays++;
 
@@ -55,20 +64,29 @@ public class EmployeeWage{
 		totalEmployeeHour=(totalEmployeeHour + employeeHour);
 
 		//calculated total Salary
-		totalSalary=(EMP_RATE_PER_HOUR * totalEmployeeHour);
+		totalSalary=(empRatePerHour * totalEmployeeHour);
 		}
-
-		System.out.println("total salary of employee:" +totalSalary);
+		return totalSalary;
 	}
 
 	//main method
    public static void main(String args[]){
 
-   //create object of class
-   EmployeeWage employee = new EmployeeWage(20,100,20);
+   //created object of class
+   EmployeeWage tcsEmployee = new EmployeeWage("TCS",20,100,20);
+	int totalTcsEmpWage=tcsEmployee.calculatedEmployeeWage();
+	System.out.println("Total Wage of Tcs Employee:" +totalTcsEmpWage);
 
-   //method call
-   employee.calculatedEmployeeWage();
+   //created object of class
+   EmployeeWage infosysEmployee = new EmployeeWage("Infosys",20,100,20);
+   int totalInfosysEmpWage=infosysEmployee.calculatedEmployeeWage();
+   System.out.println("Total Wage of infosys Employee:" +totalInfosysEmpWage);
+
+	//created object of class
+   EmployeeWage wiproEmployee = new EmployeeWage("Wipro",20,100,20);
+   int totalWiproEmpWage=wiproEmployee.calculatedEmployeeWage();
+   System.out.println("Total Wage of Wipro Employee:" +totalWiproEmpWage);
+
   }
 }
 
