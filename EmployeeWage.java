@@ -2,13 +2,17 @@
  *@Author:-> priyanka 
  *@purpose:-> Calculated Employee Wage for Multiple company 
  *@Date:-> 29/8/2020 
-**********************************************************************************************************************/
-public class EmployeeWage{
+***********************************************************************************************************************/
+interface employeeWageMethod{
+	public int calculatedEmployeeWage( CompanyEmpWage companyEmployee);
+}
 
+public class EmployeeWage implements employeeWageMethod{
 	/**
 	*calculate employee daily wages based on type of employee
 	*@return-> total employee wage 
 	*/
+
 	public int calculatedEmployeeWage(CompanyEmpWage companyEmployee)
 	{
 		//VARIABLES
