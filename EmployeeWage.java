@@ -4,25 +4,43 @@
 *@Date:-> 28/8/2020
 **********************************************************************************************************************/
  public class EmployeeWage{
-	//CONSTANTS
-	final int ABSENT=0;
-	final int PART_TIME=1;
-	final int FULL_TIME=2;
 
 	//VARIABLES
-	final String companyName;
-	final int empRatePerHour;
-	final int maxWorkingHour;
-	final int maxDays;
+	private String companyName;
+	private int empRatePerHour;
+	private int maxWorkingHour;
+	private int maxDays;
+	private int totalWage;
 
 	//CONSTRUCTOR
 
-	public EmployeeWage(String companyName,int empRatePerHour,int maxWorkingHour,int maxDays){
+	public EmployeeWage(final String companyName,final int empRatePerHour,final int maxWorkingHour,final int maxDays){
 		this.companyName=companyName;
 		this.empRatePerHour=empRatePerHour;
 		this.maxWorkingHour=maxWorkingHour;
 		this.maxDays=maxDays;
 	}
+
+	public String getCompanyName(){
+		return companyName;
+	}
+
+	 public int getEmpRatePerHour(){
+      return empRatePerHour;
+   }
+
+	 public int getMaxWorkingHour(){
+      return maxWorkingHour;
+   }
+
+	 public int getMaxDays(){
+      return maxDays;
+   }
+
+	 public int getTotalWage(){
+      return totalWage;
+   }
+
 
 	/**
 	*calculate employee daily wages based on type of employee
@@ -33,10 +51,10 @@
 		//VARIABLES
 		int totalEmployeeHour=0;
 		int employeeHour=0;
-		int totalSalary=0;
+		int totalWage=0;
 		int totalWorkingDays=0;
 
-		while(totalWorkingDays<maxDays && totalEmployeeHour<maxWorkingHour)
+		while(totalWorkingDays<getMaxDays() && totalEmployeeHour<getMaxWorkingHour())
 		{
 			totalWorkingDays++;
 
@@ -44,32 +62,28 @@
 			int empCheck = (int)( Math.random() * 10 ) % 3;
 
 			switch(empCheck){
-				case PART_TIME:
+				case 1:
 					employeeHour=4;
 					break;
 
-				case FULL_TIME:
+				case 2:
 					employeeHour=8;
 					break;
 
-				case ABSENT:
-            	employeeHour = 0;
-                break;
-
 				 default:
-					System.out.println("invalid choice");
+					employeeHour=0;
 			}
 
 		//calculated total employee hour
 		totalEmployeeHour=(totalEmployeeHour + employeeHour);
 
 		//calculated total Salary
-		totalSalary=(empRatePerHour * totalEmployeeHour);
+		totalWage=(getEmpRatePerHour() * totalEmployeeHour);
 		}
-		return totalSalary;
+		//return totalWage
+		return totalWage;
 	}
 
-	//main method
    public static void main(String args[]){
 
    //created object of class
@@ -78,12 +92,12 @@
 	System.out.println("Total Wage of Tcs Employee:" +totalTcsEmpWage);
 
    //created object of class
-   EmployeeWage infosysEmployee = new EmployeeWage("Infosys",20,100,20);
-   int totalInfosysEmpWage=infosysEmployee.calculatedEmployeeWage();
+   EmployeeWage infosysEmployee = new EmployeeWage("Infosys",10,50,15);
+   int totalInfosysEmpWage= infosysEmployee.calculatedEmployeeWage();
    System.out.println("Total Wage of infosys Employee:" +totalInfosysEmpWage);
 
 	//created object of class
-   EmployeeWage wiproEmployee = new EmployeeWage("Wipro",20,100,20);
+   EmployeeWage wiproEmployee = new EmployeeWage("Wipro",20,40,10);
    int totalWiproEmpWage=wiproEmployee.calculatedEmployeeWage();
    System.out.println("Total Wage of Wipro Employee:" +totalWiproEmpWage);
 
