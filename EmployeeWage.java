@@ -3,11 +3,9 @@
  *@purpose:-> Calculated Employee Wage for Multiple company 
  *@Date:-> 29/8/2020 
 ***********************************************************************************************************************/
-interface employeeWageMethod{
-	public int calculatedEmployeeWage( CompanyEmpWage companyEmployee);
-}
+import java.util.ArrayList;
 
-public class EmployeeWage implements employeeWageMethod{
+public class EmployeeWage {
 	/**
 	*calculate employee daily wages based on type of employee
 	*@return-> total employee wage 
@@ -51,25 +49,25 @@ public class EmployeeWage implements employeeWageMethod{
 		return totalWage;
 		}
 
+
 		public static void main(String args[]){
 
     	//created object of class
     	EmployeeWage employeeWage = new EmployeeWage();
 
     	//DECLARING ARRAY OF COMPANY EMPLOYEE WAGE OBJECT
-    	CompanyEmpWage[] company=new CompanyEmpWage[3];
+    	ArrayList<CompanyEmpWage> company=new ArrayList<CompanyEmpWage>();
 
-    	company[0]=new CompanyEmpWage("TCS",20,100,20);
-    	employeeWage.calculatedEmployeeWage(company[0]);
+    	company.add(new CompanyEmpWage("TCS",20,100,20));
+    	employeeWage.calculatedEmployeeWage(company.get(0));
 
-    	company[1]=new CompanyEmpWage("Infosys",10,50,20);
-    	employeeWage.calculatedEmployeeWage(company[1]);
+    	company.add(new CompanyEmpWage("Infosys",10,50,20));
+    	employeeWage.calculatedEmployeeWage(company.get(1));
 
-    	company[2]=new CompanyEmpWage("Wipro",10,30,10);
-    	employeeWage.calculatedEmployeeWage(company[2]);
+    	company.add(new CompanyEmpWage("Wipro",10,30,10));
+    	employeeWage.calculatedEmployeeWage(company.get(2));
   	 }
 }
-
 
 class CompanyEmpWage{
      //VARIABLES
