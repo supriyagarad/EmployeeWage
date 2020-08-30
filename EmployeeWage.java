@@ -3,22 +3,30 @@
  *@purpose:-> Calculated Employee Wage for Multiple company 
  *@Date:-> 29/8/2020 
 ***********************************************************************************************************************/
-import java.util.ArrayList;
+import java.util.*;
+interface employeeWageMethod	{
 
-public class EmployeeWage {
+	public void calculatedEmployeeWage( CompanyEmpWage companyEmployee );
+}
+
+public class EmployeeWage  implements employeeWageMethod{
+
+   HashMap<Integer, Integer> empDailyAndTotalWage = new HashMap<>();
+
 	/**
 	*calculate employee daily wages based on type of employee
 	*@return-> total employee wage 
 	*/
 
-	public int calculatedEmployeeWage(CompanyEmpWage companyEmployee)
+	public void calculatedEmployeeWage(CompanyEmpWage companyEmployee)
 	{
 		//VARIABLES
 		int totalEmployeeHour=0;
 		int employeeHour=0;
 		int totalWage=0;
 		int totalWorkingDays=0;
-
+		int empDailyWage=0;
+		int empTotalWage=0;
 		while(totalWorkingDays<companyEmployee.getMaxDays() && totalEmployeeHour<companyEmployee.getMaxWorkingHour())
 		{
 			totalWorkingDays++;
@@ -42,12 +50,20 @@ public class EmployeeWage {
 		//calculated total employee hour
 		totalEmployeeHour=(totalEmployeeHour + employeeHour);
 
-		//calculated total Salary
-		companyEmployee.setTotalWage(companyEmployee.getEmpRatePerHour() * totalEmployeeHour);
+		//Daily Employee Wage
+		empDailyWage=employeeHour*companyEmployee.getEmpRatePerHour();
+
+		//total employee Wage
+		empTotalWage=totalEmployeeHour*companyEmployee.getEmpRatePerHour();
+
+		empDailyAndTotalWage.put(empDailyWage,empTotalWage);
+
+		for (int i:empDailyAndTotalWage.keySet())
+            System.out.println("Daily Wage --> "+ i + "total employee wage-->" + empDailyAndTotalWage.get(i));
+
 		}
-		System.out.println("Total Wage of " + companyEmployee.getCompanyName() + " Employee is " + companyEmployee.getTotalWage());
-		return totalWage;
-		}
+
+	}
 
 
 		public static void main(String args[]){
